@@ -1388,7 +1388,7 @@ class _WaterTrackerPageState extends State<WaterTrackerPage>
                           Text(
                             "$currentGlasses / $totalGlasses glasses",
                             style: TextStyle(
-                              color: progress > 0.45 ? Colors.white80 : Colors.white54,
+                              color: progress > 0.45 ? Colors.white.withAlpha(204) : Colors.white.withAlpha(138),
                               fontSize: 13,
                               fontWeight: FontWeight.bold,
                             ),
@@ -1397,7 +1397,7 @@ class _WaterTrackerPageState extends State<WaterTrackerPage>
                           Text(
                             "${(currentGlasses * 0.3125).toStringAsFixed(2)}L / ${(totalGlasses * 0.3125).toStringAsFixed(1)}L",
                             style: TextStyle(
-                              color: progress > 0.45 ? Colors.white60 : Colors.white38,
+                              color: progress > 0.45 ? Colors.white.withAlpha(153) : Colors.white.withAlpha(97),
                               fontSize: 10,
                               fontWeight: FontWeight.w500,
                             ),
