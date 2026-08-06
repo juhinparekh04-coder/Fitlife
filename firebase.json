@@ -1,0 +1,28 @@
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "fit-life-1d65b",
+          "appId": "1:719098584641:android:6b2ae630afb9ee705b70c0",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "fit-life-1d65b",
+          "configurations": {
+            "android": "1:719098584641:android:6b2ae630afb9ee705b70c0",
+            "ios": "1:719098584641:ios:2f7dd7bc3204113a5b70c0",
+            "macos": "1:719098584641:ios:2f7dd7bc3204113a5b70c0",
+            "web": "1:719098584641:web:4b662acbd6ccc4f15b70c0",
+            "windows": "1:719098584641:web:3d3a219a7835a1975b70c0"
+          }
+        }
+      }
+    }
+  },
+  "firestore": {
+    "rules": "firestore.rules"
+  }
+}
