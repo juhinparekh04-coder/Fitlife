@@ -1743,8 +1743,15 @@ class _WaterTrackerPageState extends State<WaterTrackerPage>
     }
     double avgGlasses = totalSum / 7.0;
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+    return Container(
+      padding: const EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        color: cardColor,
+        borderRadius: BorderRadius.circular(24),
+        border: Border.all(color: cardBorder),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         // Graph Header
         Row(
@@ -2006,8 +2013,9 @@ class _WaterTrackerPageState extends State<WaterTrackerPage>
           },
         ),
       ],
-    );
-  }
+    ),
+  );
+}
 }
 
 // ============================================================
