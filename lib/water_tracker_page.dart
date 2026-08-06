@@ -1719,105 +1719,293 @@ class _WaterTrackerPageState extends State<WaterTrackerPage>
   }
 
   // ============================================================
-  // WEEKLY PROGRESS BAR GRAPH
+  // WEEKLY PROGRESS BAR GRAPH (Match User UI)
   // ============================================================
   Widget _buildWeeklyHistoryCard() {
     final now = DateTime.now();
+    final currentWeekday = now.weekday;
+    final mondayOfThisWeek = now.subtract(Duration(days: currentWeekday - 1));
     final List<DateTime> weekDays = List.generate(7, (i) {
-      return now.subtract(Duration(days: 6 - i));
+      return mondayOfThisWeek.add(Duration(days: i));
     });
 
-    final weekLabels = ["M", "T", "W", "T", "F", "S", "S"];
+    final weekLabels = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
-    return Container(
-      padding: const EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        color: cardColor,
-        borderRadius: BorderRadius.circular(24),
-        border: Border.all(color: cardBorder),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Text(
-            "Weekly Analytics",
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 16,
-              fontWeight: FontWeight.w800,
+    double totalSum = 0;
+    int completedDaysCount = 0;
+    for (var day in weekDays) {
+      final key = _formatDateKey(day);
+      final count = dailyWaterHistory[key] ?? 0;
+      totalSum += count;
+      if (count >= totalGlasses) {
+        completedDaysCount++;
+      }
+    }
+    double avgGlasses = totalSum / 7.0;
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        // Graph Header
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  "Weekly Progress Overview",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w800,
+                  ),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  "$completedDaysCount of 7 Days Completed 🏆",
+                  style: TextStyle(
+                    color: green,
+                    fontSize: 12,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
             ),
-          ),
-          const SizedBox(height: 22),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: List.generate(7, (index) {
-              final day = weekDays[index];
-              final key = _formatDateKey(day);
-              final count = dailyWaterHistory[key] ?? 0;
-              final maxGoal = totalGlasses;
-              final double percent = (count / maxGoal).clamp(0.0, 1.2);
-              final isToday = _isSameDay(day, now);
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+              decoration: BoxDecoration(
+                color: bluePrimary.withAlpha(30),
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(color: bluePrimary.withAlpha(60)),
+              ),
+              child: Text(
+                "Avg: ${avgGlasses.toStringAsFixed(1)} glasses/day",
+                style: TextStyle(
+                  color: bluePrimary,
+                  fontSize: 11,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 25),
 
-              return Column(
+        // 7-day Bar Graph
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: List.generate(7, (index) {
+            final day = weekDays[index];
+            final key = _formatDateKey(day);
+            final count = dailyWaterHistory[key] ?? 0;
+            final double percent = (count / totalGlasses).clamp(0.0, 1.0);
+            final isToday = _isSameDay(day, now);
+            final percentageStr = "${(percent * 100).round()}%";
+
+            return Expanded(
+              child: Column(
                 children: [
-                  // Numeric Indicator above bar
-                  Text(
-                    "$count",
-                    style: TextStyle(
-                      color: isToday ? purple : Colors.white70,
-                      fontSize: 10,
-                      fontWeight: FontWeight.bold,
+                  // Badge above bar
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
+                    decoration: BoxDecoration(
+                      color: count >= totalGlasses ? green.withAlpha(30) : Colors.transparent,
+                      borderRadius: BorderRadius.circular(6),
+                    ),
+                    child: Text(
+                      percentageStr,
+                      style: TextStyle(
+                        color: count >= totalGlasses ? green : Colors.white54,
+                        fontSize: 9,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
-                  const SizedBox(height: 6),
+                  const SizedBox(height: 8),
 
                   // The graph bar
                   Container(
-                    width: 14,
-                    height: 110,
+                    width: 22,
+                    height: 100,
                     decoration: BoxDecoration(
                       color: const Color(0xFF162436),
-                      borderRadius: BorderRadius.circular(10),
+                      borderRadius: BorderRadius.circular(12),
                     ),
                     child: Stack(
                       alignment: Alignment.bottomCenter,
                       children: [
                         // Filled part
                         Container(
-                          width: 14,
-                          height: 110 * percent,
+                          width: 22,
+                          height: 100 * percent,
                           decoration: BoxDecoration(
                             gradient: LinearGradient(
                               begin: Alignment.topCenter,
                               end: Alignment.bottomCenter,
-                              colors: percent >= 1.0 
+                              colors: count >= totalGlasses
                                   ? [green, const Color(0xFF159960)] 
                                   : [blueSecondary, blueDark],
                             ),
-                            borderRadius: BorderRadius.circular(10),
+                            borderRadius: BorderRadius.circular(12),
+                            boxShadow: count >= totalGlasses ? [
+                              BoxShadow(
+                                color: green.withAlpha(80),
+                                blurRadius: 6,
+                              )
+                            ] : null,
                           ),
                         ),
                       ],
                     ),
                   ),
-                  const SizedBox(height: 8),
+                  const SizedBox(height: 10),
 
                   // Weekday Label
                   Text(
                     weekLabels[day.weekday - 1],
                     style: TextStyle(
-                      color: isToday ? purple : Colors.white54,
-                      fontSize: 11,
+                      color: isToday ? blueSecondary : Colors.white,
+                      fontSize: 12,
                       fontWeight: isToday ? FontWeight.w800 : FontWeight.w600,
                     ),
                   ),
+                  const SizedBox(height: 2),
+                  // Fraction count e.g. 8/8
+                  Text(
+                    "$count/$totalGlasses",
+                    style: TextStyle(
+                      color: Colors.white38,
+                      fontSize: 9,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
                 ],
-              );
-            }),
+              ),
+            );
+          }),
+        ),
+
+        const SizedBox(height: 35),
+        const Divider(color: Colors.white12),
+        const SizedBox(height: 25),
+
+        // Day-by-Day Breakdown title
+        const Text(
+          "Day-by-Day Progress Breakdown",
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 16,
+            fontWeight: FontWeight.w800,
           ),
-        ],
-      ),
+        ),
+        const SizedBox(height: 16),
+
+        // List of Day-by-Day progress bars
+        ListView.separated(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          itemCount: 7,
+          separatorBuilder: (context, index) => const SizedBox(height: 12),
+          itemBuilder: (context, index) {
+            final day = weekDays[index];
+            final key = _formatDateKey(day);
+            final count = dailyWaterHistory[key] ?? 0;
+            final isCompleted = count >= totalGlasses;
+            final double percent = (count / totalGlasses).clamp(0.0, 1.0);
+            
+            // Format Day String
+            final dayNames = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+            final dayName = dayNames[day.weekday - 1];
+            final monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+            final dateString = "${day.day} ${monthNames[day.month - 1]}";
+
+            return Container(
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: cardColor,
+                borderRadius: BorderRadius.circular(16),
+                border: Border.all(
+                  color: isCompleted ? green.withAlpha(50) : cardBorder,
+                  width: isCompleted ? 1.5 : 1.0,
+                ),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          Icon(
+                            isCompleted ? Icons.check_circle_rounded : Icons.water_drop_rounded,
+                            color: isCompleted ? green : blueSecondary,
+                            size: 18,
+                          ),
+                          const SizedBox(width: 8),
+                          Text(
+                            dayName,
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          const SizedBox(width: 6),
+                          Text(
+                            "($dateString)",
+                            style: const TextStyle(
+                              color: Colors.white38,
+                              fontSize: 12,
+                            ),
+                          ),
+                        ],
+                      ),
+                      Text(
+                        "$count / $totalGlasses glasses (${(percent * 100).round()}%)",
+                        style: TextStyle(
+                          color: isCompleted ? green : Colors.white70,
+                          fontSize: 13,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 12),
+                  // Progress Bar
+                  Container(
+                    height: 8,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      color: const Color(0xFF162436),
+                      borderRadius: BorderRadius.circular(4),
+                    ),
+                    child: Stack(
+                      children: [
+                        FractionallySizedBox(
+                          widthFactor: percent,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                colors: isCompleted
+                                    ? [green, const Color(0xFF159960)]
+                                    : [blueSecondary, blueDark],
+                              ),
+                              borderRadius: BorderRadius.circular(4),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            );
+          },
+        ),
+      ],
     );
   }
 }
