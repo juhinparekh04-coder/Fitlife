@@ -2,6 +2,8 @@ import 'dart:async';
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
+import 'food_scanner_page.dart';
+import 'water_tracker_page.dart';
 
 // ============================================================
 // FOOD SCANNER PAGE
@@ -1007,6 +1009,7 @@ class _HomePageState extends State<HomePage>
             "8,246",
             "10,000",
             green,
+            onTap: () {},
           ),
         ),
 
@@ -1019,6 +1022,7 @@ class _HomePageState extends State<HomePage>
             "45",
             "60 min",
             pink,
+            onTap: () {},
           ),
         ),
 
@@ -1031,6 +1035,14 @@ class _HomePageState extends State<HomePage>
             "6",
             "8 glasses",
             blue,
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const WaterTrackerPage(),
+                ),
+              );
+            },
           ),
         ),
 
@@ -1043,6 +1055,7 @@ class _HomePageState extends State<HomePage>
             "7.2",
             "8 hrs",
             purple,
+            onTap: () {},
           ),
         ),
       ],
@@ -1054,8 +1067,9 @@ class _HomePageState extends State<HomePage>
     String title,
     String value,
     String target,
-    Color color,
-  ) {
+    Color color, {
+    required VoidCallback onTap,
+  }) {
     return TweenAnimationBuilder<double>(
       tween: Tween(
         begin: 0,
@@ -1082,7 +1096,7 @@ class _HomePageState extends State<HomePage>
               borderRadius:
                   BorderRadius.circular(17),
 
-              onTap: () {},
+              onTap: onTap,
 
               child: Padding(
                 padding:
