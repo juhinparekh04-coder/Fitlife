@@ -6,11 +6,18 @@ import 'simple_login_demo.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await dotenv.load(fileName: '.env');
-  await Firebase.initializeApp(
-    
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  try {
+    debugPrint("Loading dotenv...");
+    await dotenv.load(fileName: '.env');
+    debugPrint("Initializing Firebase...");
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+    debugPrint("Firebase initialized successfully!");
+  } catch (e, stack) {
+    debugPrint("Initialization Error: $e");
+    debugPrint(stack.toString());
+  }
   runApp(const MyApp());
 }
 
