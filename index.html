@@ -41,6 +41,14 @@
     For more details:
     * https://docs.flutter.dev/platform-integration/web/initialization
   -->
+  <script>
+    window.playAudio = function(url) {
+      var audio = new Audio(url);
+      audio.play().catch(function(error) {
+        console.log("Audio play failed: ", error);
+      });
+    }
+  </script>
   <script src="flutter_bootstrap.js" async></script>
 </body>
 </html>
