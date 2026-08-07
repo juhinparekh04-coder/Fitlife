@@ -1,10 +1,10 @@
 import 'dart:async';
 import 'dart:io';
-import 'dart:js' as js;
 import 'dart:math' as math;
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'home_page.dart';
+import 'audio_player_helper.dart';
 
 class WaterTrackerPage extends StatefulWidget {
   const WaterTrackerPage({super.key});
@@ -16,13 +16,7 @@ class WaterTrackerPage extends StatefulWidget {
 class _WaterTrackerPageState extends State<WaterTrackerPage>
     with TickerProviderStateMixin {
   void _playReminderAudio() {
-    if (kIsWeb) {
-      try {
-        js.context.callMethod('playAudio', ['assets/assets/water_reminder.aac']);
-      } catch (e) {
-        debugPrint('Error playing sound via JS: $e');
-      }
-    }
+    playReminderSound();
   }
 
   // ============================================================
