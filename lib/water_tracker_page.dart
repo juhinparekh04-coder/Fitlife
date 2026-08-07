@@ -1555,33 +1555,40 @@ class _WaterTrackerPageState extends State<WaterTrackerPage>
 
         const SizedBox(width: 16),
 
-        // WATER DROPLET CONTAINER
-        AnimatedBuilder(
-          animation: _waveAnimationController,
-          builder: (context, child) {
-            return SizedBox(
-              width: 210,
-              height: 265,
-              child: Stack(
-                alignment: Alignment.center,
-                fit: StackFit.expand,
-                children: [
-                  // WATER DROPLET PAINT & CLIPPER (Smoothed with TweenAnimationBuilder)
-                  TweenAnimationBuilder<double>(
-                    tween: Tween<double>(begin: 0.0, end: fillPercentage),
-                    duration: const Duration(milliseconds: 600),
-                    curve: Curves.easeOutCubic,
-                    builder: (context, animatedFill, child) {
-                      return CustomPaint(
-                        painter: WaterDropPainter(
-                          fillPercentage: animatedFill,
-                          waveValue: _waveAnimationController.value,
-                          primaryColor: blueSecondary,
-                          secondaryColor: blueDark,
-                        ),
-                      );
-                    },
-                  ),
+        // WATER DROPLET CONTAINER (Smoothed with ScaleTransition & spring ease)
+        ScaleTransition(
+          scale: Tween<double>(begin: 0.96, end: 1.0).animate(
+            CurvedAnimation(
+              parent: _countAnimationController,
+              curve: Curves.easeOutBack,
+            ),
+          ),
+          child: AnimatedBuilder(
+            animation: _waveAnimationController,
+            builder: (context, child) {
+              return SizedBox(
+                width: 210,
+                height: 265,
+                child: Stack(
+                  alignment: Alignment.center,
+                  fit: StackFit.expand,
+                  children: [
+                    // WATER DROPLET PAINT & CLIPPER (Smoothed with TweenAnimationBuilder)
+                    TweenAnimationBuilder<double>(
+                      tween: Tween<double>(begin: 0.0, end: fillPercentage),
+                      duration: const Duration(milliseconds: 900),
+                      curve: Curves.easeOutBack,
+                      builder: (context, animatedFill, child) {
+                        return CustomPaint(
+                          painter: WaterDropPainter(
+                            fillPercentage: animatedFill,
+                            waveValue: _waveAnimationController.value,
+                            primaryColor: blueSecondary,
+                            secondaryColor: blueDark,
+                          ),
+                        );
+                      },
+                    ),
 
                   // TEXT INSIDE DROPLET (High Contrast drop shadow)
                   Column(
@@ -1655,6 +1662,7 @@ class _WaterTrackerPageState extends State<WaterTrackerPage>
             );
           },
         ),
+      ),
 
         const SizedBox(width: 16),
 
