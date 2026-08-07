@@ -147,10 +147,11 @@ class _SimpleLoginPageState extends State<SimpleLoginPage>
           content: Text(_loginErrorMessage(error)),
         ),
       );
-    } catch (_) {
+    } catch (error) {
       if (!mounted) return;
+      debugPrint('🔥 Unknown Login Error: $error');
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Could not log in. Please try again.')),
+        SnackBar(content: Text('Login Error: $error')),
       );
     } finally {
       if (mounted) {

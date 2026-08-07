@@ -135,11 +135,12 @@ class _SignupPageState extends State<SignupPage>
       }
       debugPrint('Firestore sign-up error: ${error.code}: ${error.message}');
       showMessage(_databaseErrorMessage(error));
-    } catch (_) {
+    } catch (error) {
       if (!profileSaved) {
         await _removeIncompleteAccount(createdUser);
       }
-      showMessage('Could not create your account. Please try again.');
+      debugPrint('🔥 Unknown Signup Error: $error');
+      showMessage('Signup Error: $error');
     } finally {
       if (mounted) {
         setState(() => isSubmitting = false);
