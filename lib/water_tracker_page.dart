@@ -150,7 +150,7 @@ class _WaterTrackerPageState extends State<WaterTrackerPage>
               border: Border.all(color: bluePrimary, width: 1.5),
               boxShadow: [
                 BoxShadow(
-                  color: bluePrimary.withAlpha(90),
+                  color: bluePrimary.withValues(alpha: 0.35),
                   blurRadius: 28,
                   spreadRadius: 2,
                 ),
@@ -166,7 +166,7 @@ class _WaterTrackerPageState extends State<WaterTrackerPage>
                       Container(
                         padding: const EdgeInsets.all(10),
                         decoration: BoxDecoration(
-                          color: blueSecondary.withAlpha(50),
+                          color: blueSecondary.withValues(alpha: 0.2),
                           shape: BoxShape.circle,
                         ),
                         child: Icon(
@@ -216,7 +216,7 @@ class _WaterTrackerPageState extends State<WaterTrackerPage>
                             gradient: LinearGradient(colors: [blueSecondary, blueDark]),
                             boxShadow: [
                               BoxShadow(
-                                color: bluePrimary.withAlpha(70),
+                                color: bluePrimary.withValues(alpha: 0.3),
                                 blurRadius: 10,
                               ),
                             ],
@@ -309,10 +309,10 @@ class _WaterTrackerPageState extends State<WaterTrackerPage>
               decoration: BoxDecoration(
                 color: const Color(0xFF101B29),
                 borderRadius: const BorderRadius.vertical(top: Radius.circular(30)),
-                border: Border.all(color: purple.withAlpha(60)),
+                border: Border.all(color: purple.withValues(alpha: 0.25)),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withAlpha(200),
+                    color: Colors.black.withValues(alpha: 0.8),
                     blurRadius: 35,
                     spreadRadius: 5,
                   ),
@@ -355,7 +355,7 @@ class _WaterTrackerPageState extends State<WaterTrackerPage>
                       Switch(
                         value: tempEnabled,
                         activeColor: green,
-                        activeTrackColor: green.withAlpha(70),
+                        activeTrackColor: green.withValues(alpha: 0.3),
                         inactiveThumbColor: Colors.white38,
                         inactiveTrackColor: Colors.white10,
                         onChanged: (val) {
@@ -476,7 +476,7 @@ class _WaterTrackerPageState extends State<WaterTrackerPage>
                       Expanded(
                         child: OutlinedButton.icon(
                           style: OutlinedButton.styleFrom(
-                            side: BorderSide(color: bluePrimary.withAlpha(128)),
+                            side: BorderSide(color: bluePrimary.withValues(alpha: 0.5)),
                             padding: const EdgeInsets.symmetric(vertical: 14),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(14),
@@ -501,7 +501,7 @@ class _WaterTrackerPageState extends State<WaterTrackerPage>
                             gradient: LinearGradient(colors: [purple, bluePrimary]),
                             boxShadow: [
                               BoxShadow(
-                                color: purple.withAlpha(90),
+                                color: purple.withValues(alpha: 0.35),
                                 blurRadius: 15,
                               ),
                             ],
@@ -654,10 +654,10 @@ class _WaterTrackerPageState extends State<WaterTrackerPage>
               decoration: BoxDecoration(
                 color: const Color(0xFF101B29),
                 borderRadius: const BorderRadius.vertical(top: Radius.circular(30)),
-                border: Border.all(color: purple.withAlpha(60)),
+                border: Border.all(color: purple.withValues(alpha: 0.25)),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withAlpha(200),
+                    color: Colors.black.withValues(alpha: 0.8),
                     blurRadius: 35,
                     spreadRadius: 5,
                   ),
@@ -775,7 +775,7 @@ class _WaterTrackerPageState extends State<WaterTrackerPage>
                               color: isSelected
                                   ? null
                                   : isToday
-                                      ? purple.withAlpha(50)
+                                      ? purple.withValues(alpha: 0.18)
                                       : const Color(0xFF162436),
                               borderRadius: BorderRadius.circular(12),
                               border: Border.all(
@@ -784,14 +784,14 @@ class _WaterTrackerPageState extends State<WaterTrackerPage>
                                     : isToday
                                         ? purple
                                         : isGoalMet
-                                            ? green.withAlpha(150)
+                                            ? green.withValues(alpha: 0.6)
                                             : Colors.white12,
                                 width: isSelected || isToday ? 1.5 : 1.0,
                               ),
                               boxShadow: isSelected
                                   ? [
                                       BoxShadow(
-                                        color: purple.withAlpha(100),
+                                        color: purple.withValues(alpha: 0.4),
                                         blurRadius: 10,
                                       ),
                                     ]
@@ -814,8 +814,8 @@ class _WaterTrackerPageState extends State<WaterTrackerPage>
                                     padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
                                     decoration: BoxDecoration(
                                       color: isGoalMet
-                                          ? green.withAlpha(isSelected ? 230 : 64)
-                                          : blueSecondary.withAlpha(isSelected ? 230 : 64),
+                                          ? green.withValues(alpha: isSelected ? 0.9 : 0.25)
+                                          : blueSecondary.withValues(alpha: isSelected ? 0.9 : 0.25),
                                       borderRadius: BorderRadius.circular(6),
                                     ),
                                     child: Text(
@@ -862,10 +862,10 @@ class _WaterTrackerPageState extends State<WaterTrackerPage>
               decoration: BoxDecoration(
                 color: const Color(0xFF101B29),
                 borderRadius: const BorderRadius.vertical(top: Radius.circular(30)),
-                border: Border.all(color: purple.withAlpha(64)),
+                border: Border.all(color: purple.withValues(alpha: 0.25)),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withAlpha(180),
+                    color: Colors.black.withValues(alpha: 0.7),
                     blurRadius: 30,
                     spreadRadius: 5,
                   ),
@@ -948,7 +948,7 @@ class _WaterTrackerPageState extends State<WaterTrackerPage>
                         ),
                         boxShadow: [
                           BoxShadow(
-                            color: purple.withAlpha(90),
+                            color: purple.withValues(alpha: 0.35),
                             blurRadius: 15,
                           ),
                         ],
@@ -1012,6 +1012,7 @@ class _WaterTrackerPageState extends State<WaterTrackerPage>
           ),
         ),
       ),
+      bottomNavigationBar: _buildBottomNavigation(),
     );
   }
 
@@ -1149,9 +1150,9 @@ class _WaterTrackerPageState extends State<WaterTrackerPage>
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
                     decoration: BoxDecoration(
-                      color: bluePrimary.withAlpha(50),
+                      color: bluePrimary.withValues(alpha: 0.2),
                       borderRadius: BorderRadius.circular(8),
-                      border: Border.all(color: bluePrimary.withAlpha(100)),
+                      border: Border.all(color: bluePrimary.withValues(alpha: 0.4)),
                     ),
                     child: const Text(
                       "TODAY",
@@ -1216,14 +1217,14 @@ class _WaterTrackerPageState extends State<WaterTrackerPage>
                       color: isSelected
                           ? Colors.white
                           : isGoalMet
-                              ? green.withAlpha(128)
+                              ? green.withValues(alpha: 0.5)
                               : cardBorder,
                       width: isSelected ? 1.5 : 1.0,
                     ),
                     boxShadow: isSelected
                         ? [
                             BoxShadow(
-                              color: purple.withAlpha(97),
+                              color: purple.withValues(alpha: 0.38),
                               blurRadius: 14,
                               spreadRadius: 1,
                             ),
@@ -1244,24 +1245,36 @@ class _WaterTrackerPageState extends State<WaterTrackerPage>
                       Text(
                         "${date.day}",
                         style: TextStyle(
-                          color: isSelected ? Colors.white : Colors.white70,
-                          fontSize: 15,
-                          fontWeight: isSelected ? FontWeight.w800 : FontWeight.w600,
+                          color: isSelected ? Colors.white : Colors.white,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w800,
                         ),
                       ),
                       const SizedBox(height: 6),
-                      if (glasses > 0)
-                        Icon(
-                          Icons.water_drop_rounded,
+                      // Glasses badge dot / text
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                        decoration: BoxDecoration(
                           color: isSelected
-                              ? Colors.white
+                              ? Colors.black.withValues(alpha: 0.3)
                               : isGoalMet
-                                  ? green
-                                  : blueSecondary,
-                          size: 13,
-                        )
-                      else
-                        const Icon(Icons.circle_outlined, color: Colors.white12, size: 10),
+                                  ? green.withValues(alpha: 0.22)
+                                  : bluePrimary.withValues(alpha: 0.18),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: Text(
+                          "$glasses",
+                          style: TextStyle(
+                            color: isSelected
+                                ? Colors.white
+                                : isGoalMet
+                                    ? green
+                                    : bluePrimary,
+                            fontSize: 11,
+                            fontWeight: FontWeight.w900,
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -1274,311 +1287,471 @@ class _WaterTrackerPageState extends State<WaterTrackerPage>
   }
 
   // ============================================================
-  // WATER DROPLET INTERACTIVE BUBBLE
+  // WATER DROPLET SECTION (- DROPLET +)
   // ============================================================
   Widget _buildWaterDropletSection() {
-    double progress = (currentGlasses / totalGlasses).clamp(0.0, 1.0);
-    int percentage = (progress * 100).round();
+    double fillPercentage = (currentGlasses / totalGlasses).clamp(0.0, 1.0);
 
-    return Column(
+    String dateLabel = "Today";
+    final now = DateTime.now();
+    if (_isSameDay(selectedDate, now)) {
+      dateLabel = "Today";
+    } else if (_isSameDay(selectedDate, now.subtract(const Duration(days: 1)))) {
+      dateLabel = "Yesterday";
+    } else {
+      dateLabel = "${selectedDate.day} ${_monthAbbr(selectedDate.month)}";
+    }
+
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Stack(
-          alignment: Alignment.center,
-          children: [
-            // Outermost pulsing aura
-            AnimatedBuilder(
-              animation: _pulseAnimationController,
-              builder: (context, child) {
-                return Container(
-                  width: 250 + (_pulseAnimationController.value * 22),
-                  height: 250 + (_pulseAnimationController.value * 22),
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: bluePrimary.withAlpha((20 - (_pulseAnimationController.value * 15)).round()),
-                  ),
-                );
-              },
-            ),
-
-            // Middle glow ring
-            Container(
-              width: 234,
-              height: 234,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                border: Border.all(
-                  color: bluePrimary.withAlpha(40),
-                  width: 3,
-                ),
-              ),
-            ),
-
-            // The main interactive droplet container
-            ClipPath(
-              clipper: _CircleClipper(),
-              child: Container(
-                width: 210,
-                height: 210,
-                decoration: BoxDecoration(
-                  color: const Color(0xFF0F1E31),
-                  shape: BoxShape.circle,
-                  border: Border.all(color: cardBorder, width: 2),
-                ),
-                child: Stack(
-                  children: [
-                    // Wave simulation layer
-                    AnimatedBuilder(
-                      animation: _waveAnimationController,
-                      builder: (context, child) {
-                        return Positioned(
-                          left: 0,
-                          right: 0,
-                          bottom: 0,
-                          top: (210 - (progress * 210)), // controls fill height
-                          child: CustomPaint(
-                            size: const Size(210, 210),
-                            painter: _WavePainter(
-                              animationValue: _waveAnimationController.value,
-                              waveColor: progress >= 1.0 ? green : blueSecondary,
-                              waveDarkColor: progress >= 1.0 
-                                  ? const Color(0xFF159960) 
-                                  : blueDark,
-                            ),
-                          ),
-                        );
-                      },
-                    ),
-
-                    // Centered progress display text
-                    Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.water_drop_rounded,
-                            color: progress > 0.45 ? Colors.white : blueSecondary,
-                            size: 32,
-                          ),
-                          const SizedBox(height: 5),
-                          AnimatedBuilder(
-                            animation: _countAnimationController,
-                            builder: (context, child) {
-                              // Mini scale bounce on increment
-                              final scale = 1.0 + (math.sin(_countAnimationController.value * math.pi) * 0.15);
-                              return Transform.scale(
-                                scale: scale,
-                                child: Text(
-                                  "$percentage%",
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 42,
-                                    fontWeight: FontWeight.w900,
-                                    letterSpacing: -1,
-                                    shadows: [
-                                      Shadow(
-                                        color: Colors.black.withAlpha(128),
-                                        blurRadius: 10,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              );
-                            },
-                          ),
-                          Text(
-                            "$currentGlasses / $totalGlasses glasses",
-                            style: TextStyle(
-                              color: progress > 0.45 ? Colors.white.withAlpha(204) : Colors.white.withAlpha(138),
-                              fontSize: 13,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          const SizedBox(height: 4),
-                          Text(
-                            "${(currentGlasses * 0.3125).toStringAsFixed(2)}L / ${(totalGlasses * 0.3125).toStringAsFixed(1)}L",
-                            style: TextStyle(
-                              color: progress > 0.45 ? Colors.white.withAlpha(153) : Colors.white.withAlpha(97),
-                              fontSize: 10,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ],
+        // DECREMENT BUTTON (-)
+        _circularControlButton(
+          icon: Icons.remove_rounded,
+          onTap: _decrementWater,
+          enabled: currentGlasses > 0,
         ),
 
-        const SizedBox(height: 24),
+        const SizedBox(width: 16),
 
-        // Floating Control Buttons (Minus & Plus)
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            // Minus Button
-            _circleControlBtn(
-              icon: Icons.remove_rounded,
-              color: pink,
-              onTap: _decrementWater,
-            ),
-            const SizedBox(width: 32),
-
-            // Quick Add 1 Glass Big Button
-            GestureDetector(
-              onTap: () {
-                _incrementWater();
-                // Play subtle feedback snackbar at goal
-                if (currentGlasses + 1 == totalGlasses) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      backgroundColor: green,
-                      behavior: SnackBarBehavior.floating,
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-                      content: const Text(
-                        "Congratulations! Daily Water Goal Achieved! 🏆💧✨",
-                        style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
-                      ),
+        // WATER DROPLET CONTAINER
+        AnimatedBuilder(
+          animation: _waveAnimationController,
+          builder: (context, child) {
+            return SizedBox(
+              width: 210,
+              height: 265,
+              child: Stack(
+                alignment: Alignment.center,
+                fit: StackFit.expand,
+                children: [
+                  // WATER DROPLET PAINT & CLIPPER
+                  CustomPaint(
+                    painter: WaterDropPainter(
+                      fillPercentage: fillPercentage,
+                      waveValue: _waveAnimationController.value,
+                      primaryColor: blueSecondary,
+                      secondaryColor: blueDark,
                     ),
-                  );
-                }
-              },
-              child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 26, vertical: 16),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  gradient: LinearGradient(
-                    colors: currentGlasses >= totalGlasses ? [green, const Color(0xFF159960)] : [blueSecondary, blueDark],
                   ),
-                  boxShadow: [
-                    BoxShadow(
-                      color: (currentGlasses >= totalGlasses ? green : blueSecondary).withAlpha(100),
-                      blurRadius: 18,
-                      offset: const Offset(0, 4),
-                    ),
-                  ],
-                ),
-                child: Row(
-                  children: [
-                    const Icon(Icons.add_rounded, color: Colors.white, size: 24),
-                    const SizedBox(width: 6),
-                    Text(
-                      "Add 1 Glass",
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 15,
-                        fontWeight: FontWeight.w800,
-                        letterSpacing: 0.3,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            const SizedBox(width: 32),
 
-            // Plus Custom Set Button
-            _circleControlBtn(
-              icon: Icons.add_rounded,
-              color: green,
-              onTap: _incrementWater,
-            ),
-          ],
+                  // TEXT INSIDE DROPLET (High Contrast drop shadow)
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const SizedBox(height: 35),
+                      // COUNTER WITH ANIMATION
+                      ScaleTransition(
+                        scale: Tween<double>(begin: 0.9, end: 1.0).animate(
+                          CurvedAnimation(
+                            parent: _countAnimationController,
+                            curve: Curves.easeOutBack,
+                          ),
+                        ),
+                        child: Text(
+                          "$currentGlasses",
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 56,
+                            fontWeight: FontWeight.w900,
+                            height: 1.0,
+                            shadows: [
+                              Shadow(
+                                color: Colors.black45,
+                                blurRadius: 12,
+                                offset: Offset(0, 4),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 4),
+                      Text(
+                        "of $totalGlasses glasses",
+                        style: TextStyle(
+                          color: Colors.white.withValues(alpha: 0.9),
+                          fontSize: 14,
+                          fontWeight: FontWeight.w700,
+                          shadows: const [
+                            Shadow(
+                              color: Colors.black38,
+                              blurRadius: 8,
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: 7),
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 4),
+                        decoration: BoxDecoration(
+                          color: Colors.black.withValues(alpha: 0.35),
+                          borderRadius: BorderRadius.circular(12),
+                          border: Border.all(
+                            color: Colors.white.withValues(alpha: 0.25),
+                            width: 1.0,
+                          ),
+                        ),
+                        child: Text(
+                          dateLabel,
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            );
+          },
+        ),
+
+        const SizedBox(width: 16),
+
+        // INCREMENT BUTTON (+)
+        _circularControlButton(
+          icon: Icons.add_rounded,
+          onTap: _incrementWater,
+          enabled: true,
         ),
       ],
     );
   }
 
-  Widget _circleControlBtn({required IconData icon, required Color color, required VoidCallback onTap}) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        width: 50,
-        height: 50,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          color: cardColor,
-          border: Border.all(color: color.withAlpha(100), width: 1.5),
-          boxShadow: [
-            BoxShadow(
-              color: color.withAlpha(25),
-              blurRadius: 8,
-              spreadRadius: 1,
-            ),
-          ],
+  String _monthAbbr(int month) {
+    const m = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    return m[month - 1];
+  }
+
+  // ============================================================
+  // CIRCULAR CONTROL BUTTON (- / +)
+  // ============================================================
+  Widget _circularControlButton({
+    required IconData icon,
+    required VoidCallback onTap,
+    required bool enabled,
+  }) {
+    return Container(
+      width: 56,
+      height: 56,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        color: cardColor,
+        border: Border.all(
+          color: enabled ? bluePrimary.withValues(alpha: 0.35) : Colors.white12,
+          width: 1.5,
         ),
-        child: Icon(icon, color: color, size: 24),
+        boxShadow: [
+          BoxShadow(
+            color: enabled ? bluePrimary.withValues(alpha: 0.16) : Colors.transparent,
+            blurRadius: 16,
+            spreadRadius: 1,
+          ),
+        ],
+      ),
+      child: Material(
+        color: Colors.transparent,
+        shape: const CircleBorder(),
+        child: InkWell(
+          customBorder: const CircleBorder(),
+          onTap: enabled ? onTap : null,
+          child: Icon(
+            icon,
+            color: enabled ? Colors.white : Colors.white24,
+            size: 28,
+          ),
+        ),
       ),
     );
   }
 
   // ============================================================
-  // REMINDER CARD
+  // INTERACTIVE WATER REMINDER CARD WITH LIVE COUNTDOWN
   // ============================================================
   Widget _buildNextReminderCard() {
-    return Container(
-      padding: const EdgeInsets.all(18),
-      decoration: BoxDecoration(
-        color: cardColor,
-        borderRadius: BorderRadius.circular(24),
-        border: Border.all(color: cardBorder),
-      ),
-      child: Row(
-        children: [
-          Container(
-            padding: const EdgeInsets.all(12),
-            decoration: BoxDecoration(
-              color: purple.withAlpha(40),
-              borderRadius: BorderRadius.circular(16),
-            ),
-            child: Icon(
-              Icons.notifications_active_rounded,
-              color: purple,
-              size: 26,
-            ),
+    return GestureDetector(
+      onTap: _openReminderSettingsDialog,
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+        decoration: BoxDecoration(
+          color: cardColor,
+          borderRadius: BorderRadius.circular(22),
+          border: Border.all(
+            color: isReminderEnabled
+                ? bluePrimary.withValues(alpha: 0.3)
+                : Colors.white12,
+            width: 1.2,
           ),
-          const SizedBox(width: 14),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+          boxShadow: [
+            BoxShadow(
+              color: isReminderEnabled
+                  ? bluePrimary.withValues(alpha: 0.12)
+                  : Colors.transparent,
+              blurRadius: 20,
+              offset: const Offset(0, 4),
+            ),
+          ],
+        ),
+        child: Column(
+          children: [
+            // Status Header Row
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text(
-                  "Next Reminder In",
-                  style: TextStyle(
-                    color: Colors.white54,
-                    fontSize: 12,
-                    fontWeight: FontWeight.w600,
-                  ),
+                Row(
+                  children: [
+                    Container(
+                      width: 8,
+                      height: 8,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: isReminderEnabled ? green : Colors.white30,
+                        boxShadow: isReminderEnabled
+                            ? [BoxShadow(color: green, blurRadius: 6)]
+                            : null,
+                      ),
+                    ),
+                    const SizedBox(width: 8),
+                    Text(
+                      isReminderEnabled ? "WATER REMINDER (ACTIVE)" : "REMINDER DISABLED",
+                      style: TextStyle(
+                        color: isReminderEnabled ? green : Colors.white38,
+                        fontSize: 11,
+                        fontWeight: FontWeight.bold,
+                        letterSpacing: 0.5,
+                      ),
+                    ),
+                  ],
                 ),
-                const SizedBox(height: 3),
-                Text(
-                  _formatCountdownTime(reminderSecondsRemaining),
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 18,
-                    fontWeight: FontWeight.w800,
+                Icon(
+                  Icons.settings_suggest_rounded,
+                  color: isReminderEnabled ? purple : Colors.white38,
+                  size: 20,
+                ),
+              ],
+            ),
+
+            const SizedBox(height: 10),
+
+            // Live Countdown Display
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Next reminder in",
+                      style: TextStyle(
+                        color: Colors.white.withValues(alpha: 0.65),
+                        fontSize: 13,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    const SizedBox(height: 2),
+                    Text(
+                      _formatCountdownTime(reminderSecondsRemaining),
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 24,
+                        fontWeight: FontWeight.w900,
+                        letterSpacing: 0.5,
+                      ),
+                    ),
+                  ],
+                ),
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                  decoration: BoxDecoration(
+                    color: bluePrimary.withValues(alpha: 0.15),
+                    borderRadius: BorderRadius.circular(12),
+                    border: Border.all(color: bluePrimary.withValues(alpha: 0.3)),
+                  ),
+                  child: Text(
+                    "Every ${reminderIntervalMinutes}m",
+                    style: TextStyle(
+                      color: bluePrimary,
+                      fontSize: 12,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ],
             ),
-          ),
-          OutlinedButton(
-            style: OutlinedButton.styleFrom(
-              side: BorderSide(color: purple.withAlpha(128)),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
-              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+
+            const SizedBox(height: 12),
+            const Divider(color: Colors.white10),
+            const SizedBox(height: 6),
+
+            // Action Row (Set Reminder & Test Notification)
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                GestureDetector(
+                  onTap: _openReminderSettingsDialog,
+                  child: Text(
+                    "Configure Reminder ⏰",
+                    style: TextStyle(
+                      color: purple,
+                      fontSize: 12,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                GestureDetector(
+                  onTap: _showHydrationNotificationBanner,
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                    decoration: BoxDecoration(
+                      color: Colors.white.withValues(alpha: 0.08),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Row(
+                      children: const [
+                        Icon(Icons.notifications_active_rounded, color: Color(0xFF00C6FF), size: 14),
+                        SizedBox(width: 5),
+                        Text(
+                          "Test Notification 🔔",
+                          style: TextStyle(
+                            color: Color(0xFF00C6FF),
+                            fontSize: 11,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
             ),
-            onPressed: _openReminderSettingsDialog,
-            child: Text(
-              "Set Alert",
-              style: TextStyle(
-                color: purple,
-                fontSize: 12,
-                fontWeight: FontWeight.w700,
+          ],
+        ),
+      ),
+    );
+  }
+
+  // ============================================================
+  // GLASS ROW INDICATOR (8 glasses)
+  // ============================================================
+  Widget _buildGlassRowIndicator() {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 16),
+      decoration: BoxDecoration(
+        color: cardColor,
+        borderRadius: BorderRadius.circular(22),
+        border: Border.all(color: cardBorder),
+      ),
+      child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        physics: const BouncingScrollPhysics(),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: List.generate(totalGlasses, (index) {
+            final bool isFilled = index < currentGlasses;
+            return GestureDetector(
+              onTap: () {
+                _setGlassesForSelectedDate(index + 1);
+              },
+              child: AnimatedContainer(
+                duration: const Duration(milliseconds: 300),
+                margin: const EdgeInsets.symmetric(horizontal: 4),
+                padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 8),
+                decoration: BoxDecoration(
+                  color: isFilled ? bluePrimary.withValues(alpha: 0.15) : Colors.transparent,
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(
+                    color: isFilled ? bluePrimary.withValues(alpha: 0.5) : Colors.transparent,
+                  ),
+                ),
+                child: CustomPaint(
+                  size: const Size(22, 32),
+                  painter: GlassIconPainter(
+                    isFilled: isFilled,
+                    fillColor: blueSecondary,
+                  ),
+                ),
+              ),
+            );
+          }),
+        ),
+      ),
+    );
+  }
+
+  // ============================================================
+  // DAILY GOAL CARD (Matching HomePage's gradient card style)
+  // ============================================================
+  Widget _buildDailyGoalCard() {
+    final double litersDrunk = (currentGlasses * 0.3125);
+    final double litersTotal = (totalGlasses * 0.3125);
+
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(24),
+        gradient: const LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [
+            Color(0xFF292442),
+            Color(0xFF15192E),
+          ],
+        ),
+        border: Border.all(
+          color: purple.withValues(alpha: 0.15),
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: purple.withValues(alpha: 0.12),
+            blurRadius: 28,
+            spreadRadius: 2,
+          ),
+        ],
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                "Daily Goal",
+                style: TextStyle(
+                  color: Colors.white70,
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 6),
+              Text(
+                "$currentGlasses / $totalGlasses glasses (${litersDrunk.toStringAsFixed(1)} / ${litersTotal.toStringAsFixed(1)} L)",
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 17,
+                  fontWeight: FontWeight.w800,
+                ),
+              ),
+            ],
+          ),
+          Material(
+            color: Colors.transparent,
+            child: InkWell(
+              borderRadius: BorderRadius.circular(12),
+              onTap: _editGoalDialog,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+                child: Text(
+                  "Edit Goal",
+                  style: TextStyle(
+                    color: purple,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
               ),
             ),
           ),
@@ -1588,76 +1761,311 @@ class _WaterTrackerPageState extends State<WaterTrackerPage>
   }
 
   // ============================================================
-  // INDIVIDUAL GLASS ROW INDICATOR
+  // WEEKLY HISTORY CARD (Bar Chart & Day Breakdown)
   // ============================================================
-  Widget _buildGlassRowIndicator() {
+  Widget _buildWeeklyHistoryCard() {
+    final now = DateTime.now();
+    final mondayOfThisWeek = now.subtract(Duration(days: now.weekday - 1));
+    final fullDayNames = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+
+    int totalWeekGlasses = 0;
+    int daysGoalMet = 0;
+    for (int i = 0; i < 7; i++) {
+      final d = mondayOfThisWeek.add(Duration(days: i));
+      final g = dailyWaterHistory[_formatDateKey(d)] ?? 0;
+      totalWeekGlasses += g;
+      if (g >= totalGlasses) daysGoalMet++;
+    }
+
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.all(18),
+      padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
         color: cardColor,
         borderRadius: BorderRadius.circular(24),
         border: Border.all(color: cardBorder),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.3),
+            blurRadius: 20,
+            offset: const Offset(0, 4),
+          ),
+        ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          // HEADER
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text(
-                "Drink Progress Map",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 14,
-                  fontWeight: FontWeight.w800,
-                ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    "Weekly Progress Overview",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 17,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    "$daysGoalMet of 7 Days Completed 🏆",
+                    style: TextStyle(
+                      color: green,
+                      fontSize: 12,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ],
               ),
-              Text(
-                "Goal: $totalGlasses",
-                style: TextStyle(
-                  color: bluePrimary,
-                  fontSize: 12,
-                  fontWeight: FontWeight.bold,
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                decoration: BoxDecoration(
+                  color: bluePrimary.withValues(alpha: 0.15),
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(color: bluePrimary.withValues(alpha: 0.3)),
+                ),
+                child: Text(
+                  "Avg: ${(totalWeekGlasses / 7).toStringAsFixed(1)} glasses/day",
+                  style: TextStyle(
+                    color: bluePrimary,
+                    fontSize: 12,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ],
           ),
-          const SizedBox(height: 16),
-          // Grid-like layout representing glasses
-          Wrap(
-            spacing: 8,
-            runSpacing: 10,
-            children: List.generate(totalGlasses.clamp(1, 20), (index) {
-              final isDrunk = index < currentGlasses;
+
+          const SizedBox(height: 22),
+
+          // BAR CHART WITH PERCENTAGE AND GLASSES
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: List.generate(7, (index) {
+              final date = mondayOfThisWeek.add(Duration(days: index));
+              final glasses = dailyWaterHistory[_formatDateKey(date)] ?? 0;
+              final double progressRatio = (glasses / totalGlasses).clamp(0.0, 1.0);
+              final int percentage = (progressRatio * 100).round();
+              final isSelected = _isSameDay(date, selectedDate);
+              final isGoalMet = glasses >= totalGlasses;
+
               return GestureDetector(
                 onTap: () {
-                  _setGlassesForSelectedDate(index + 1);
+                  setState(() {
+                    selectedDate = date;
+                  });
+                  _countAnimationController.forward(from: 0);
+                },
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    // Percentage / Glass label on top of bar
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
+                      decoration: BoxDecoration(
+                        color: isGoalMet
+                            ? green.withValues(alpha: 0.2)
+                            : isSelected
+                                ? bluePrimary.withValues(alpha: 0.2)
+                                : Colors.transparent,
+                        borderRadius: BorderRadius.circular(6),
+                      ),
+                      child: Text(
+                        "$percentage%",
+                        style: TextStyle(
+                          color: isGoalMet
+                              ? green
+                              : isSelected
+                                  ? Colors.white
+                                  : Colors.white54,
+                          fontSize: 10,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 6),
+                    // Bar height container
+                    Stack(
+                      alignment: Alignment.bottomCenter,
+                      children: [
+                        // Background track
+                        Container(
+                          width: 22,
+                          height: 90,
+                          decoration: BoxDecoration(
+                            color: Colors.white.withValues(alpha: 0.05),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                        // Animated progress fill
+                        AnimatedContainer(
+                          duration: const Duration(milliseconds: 300),
+                          width: 22,
+                          height: (90 * progressRatio).clamp(6.0, 90.0),
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              begin: Alignment.bottomCenter,
+                              end: Alignment.topCenter,
+                              colors: isGoalMet
+                                  ? [green, const Color(0xFF5DFFC6)]
+                                  : isSelected
+                                      ? [blueDark, blueSecondary]
+                                      : [bluePrimary.withValues(alpha: 0.35), bluePrimary.withValues(alpha: 0.75)],
+                            ),
+                            borderRadius: BorderRadius.circular(10),
+                            boxShadow: isSelected || isGoalMet
+                                ? [
+                                    BoxShadow(
+                                      color: (isGoalMet ? green : bluePrimary).withValues(alpha: 0.4),
+                                      blurRadius: 8,
+                                    ),
+                                  ]
+                                : null,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      fullDayNames[index],
+                      style: TextStyle(
+                        color: isSelected ? Colors.white : Colors.white70,
+                        fontSize: 12,
+                        fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
+                      ),
+                    ),
+                    const SizedBox(height: 2),
+                    Text(
+                      "$glasses/$totalGlasses",
+                      style: TextStyle(
+                        color: isSelected ? bluePrimary : Colors.white54,
+                        fontSize: 9,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            }),
+          ),
+
+          const SizedBox(height: 24),
+          const Divider(color: Colors.white12),
+          const SizedBox(height: 16),
+
+          const Text(
+            "Day-by-Day Progress Breakdown",
+            style: TextStyle(
+              color: Colors.white70,
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+
+          const SizedBox(height: 14),
+
+          // LIST OF DAYS WITH PROGRESS BARS
+          Column(
+            children: List.generate(7, (index) {
+              final date = mondayOfThisWeek.add(Duration(days: index));
+              final dateKey = _formatDateKey(date);
+              final glasses = dailyWaterHistory[dateKey] ?? 0;
+              final double progressRatio = (glasses / totalGlasses).clamp(0.0, 1.0);
+              final int percentage = (progressRatio * 100).round();
+              final isSelected = _isSameDay(date, selectedDate);
+              final isGoalMet = glasses >= totalGlasses;
+              final dayFullNames = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+
+              return GestureDetector(
+                onTap: () {
+                  setState(() {
+                    selectedDate = date;
+                  });
+                  _countAnimationController.forward(from: 0);
                 },
                 child: AnimatedContainer(
                   duration: const Duration(milliseconds: 200),
-                  width: 32,
-                  height: 42,
+                  margin: const EdgeInsets.only(bottom: 10),
+                  padding: const EdgeInsets.all(12),
                   decoration: BoxDecoration(
-                    color: isDrunk 
-                        ? (currentGlasses >= totalGlasses ? green.withAlpha(50) : blueSecondary.withAlpha(50)) 
-                        : const Color(0xFF162436),
-                    borderRadius: BorderRadius.circular(8),
+                    color: isSelected
+                        ? bluePrimary.withValues(alpha: 0.14)
+                        : const Color(0xFF142030),
+                    borderRadius: BorderRadius.circular(14),
                     border: Border.all(
-                      color: isDrunk 
-                          ? (currentGlasses >= totalGlasses ? green : blueSecondary) 
-                          : Colors.white12,
-                      width: 1.5,
+                      color: isSelected
+                          ? bluePrimary.withValues(alpha: 0.45)
+                          : isGoalMet
+                              ? green.withValues(alpha: 0.35)
+                              : Colors.white12,
                     ),
                   ),
-                  child: Center(
-                    child: Icon(
-                      Icons.water_drop_rounded,
-                      color: isDrunk 
-                          ? (currentGlasses >= totalGlasses ? green : blueSecondary) 
-                          : Colors.white24,
-                      size: 18,
-                    ),
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            children: [
+                              Icon(
+                                isGoalMet
+                                    ? Icons.check_circle_rounded
+                                    : Icons.water_drop_rounded,
+                                color: isGoalMet ? green : bluePrimary,
+                                size: 18,
+                              ),
+                              const SizedBox(width: 8),
+                              Text(
+                                dayFullNames[index],
+                                style: TextStyle(
+                                  color: isSelected ? Colors.white : Colors.white,
+                                  fontSize: 13,
+                                  fontWeight: isSelected ? FontWeight.bold : FontWeight.w600,
+                                ),
+                              ),
+                              const SizedBox(width: 6),
+                              Text(
+                                "(${date.day} ${_monthAbbr(date.month)})",
+                                style: const TextStyle(
+                                  color: Colors.white54,
+                                  fontSize: 11,
+                                ),
+                              ),
+                            ],
+                          ),
+                          Text(
+                            "$glasses / $totalGlasses glasses ($percentage%)",
+                            style: TextStyle(
+                              color: isGoalMet
+                                  ? green
+                                  : isSelected
+                                      ? bluePrimary
+                                      : Colors.white70,
+                              fontSize: 12,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 8),
+                      // Progress Indicator Bar
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(6),
+                        child: LinearProgressIndicator(
+                          value: progressRatio,
+                          minHeight: 7,
+                          backgroundColor: Colors.white.withValues(alpha: 0.08),
+                          valueColor: AlwaysStoppedAnimation<Color>(
+                            isGoalMet ? green : bluePrimary,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               );
@@ -1669,424 +2077,317 @@ class _WaterTrackerPageState extends State<WaterTrackerPage>
   }
 
   // ============================================================
-  // GOAL ADJUST CARD
+  // BOTTOM NAVIGATION BAR (Exact HomePage Bottom Nav)
   // ============================================================
-  Widget _buildDailyGoalCard() {
+  Widget _buildBottomNavigation() {
     return Container(
-      padding: const EdgeInsets.all(18),
+      padding: const EdgeInsets.only(top: 9, bottom: 8),
       decoration: BoxDecoration(
-        color: cardColor,
-        borderRadius: BorderRadius.circular(24),
-        border: Border.all(color: cardBorder),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Row(
-            children: [
-              Container(
-                padding: const EdgeInsets.all(12),
-                decoration: BoxDecoration(
-                  color: green.withAlpha(40),
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                child: Icon(Icons.track_changes_rounded, color: green, size: 24),
-              ),
-              const SizedBox(width: 14),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    "Daily Intake Target",
-                    style: TextStyle(color: Colors.white70, fontSize: 13, fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(height: 3),
-                  Text(
-                    "$totalGlasses Glasses / ${(totalGlasses * 0.3125).toStringAsFixed(1)}L",
-                    style: const TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.w800),
-                  ),
-                ],
-              ),
-            ],
-          ),
-          IconButton(
-            onPressed: _editGoalDialog,
-            icon: const Icon(Icons.edit_rounded, color: Colors.white54),
+        color: const Color(0xFF08131F),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.40),
+            blurRadius: 25,
           ),
         ],
+      ),
+      child: SafeArea(
+        top: false,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            _navItem(
+              Icons.home_rounded,
+              "Home",
+              0,
+            ),
+            _navItem(
+              Icons.receipt_long_outlined,
+              "Plan",
+              1,
+            ),
+            _addButton(),
+            _navItem(
+              Icons.bar_chart_rounded,
+              "Progress",
+              3,
+            ),
+            _navItem(
+              Icons.person_outline_rounded,
+              "Profile",
+              4,
+            ),
+          ],
+        ),
       ),
     );
   }
 
-  // ============================================================
-  // WEEKLY PROGRESS BAR GRAPH (Match User UI)
-  // ============================================================
-  Widget _buildWeeklyHistoryCard() {
-    final now = DateTime.now();
-    final currentWeekday = now.weekday;
-    final mondayOfThisWeek = now.subtract(Duration(days: currentWeekday - 1));
-    final List<DateTime> weekDays = List.generate(7, (i) {
-      return mondayOfThisWeek.add(Duration(days: i));
-    });
+  Widget _navItem(IconData icon, String label, int index) {
+    final bool selected = (index == 0); // Home tab selected conceptually
 
-    final weekLabels = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-
-    double totalSum = 0;
-    int completedDaysCount = 0;
-    for (var day in weekDays) {
-      final key = _formatDateKey(day);
-      final count = dailyWaterHistory[key] ?? 0;
-      totalSum += count;
-      if (count >= totalGlasses) {
-        completedDaysCount++;
-      }
-    }
-    double avgGlasses = totalSum / 7.0;
-
-    return Container(
-      padding: const EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        color: cardColor,
-        borderRadius: BorderRadius.circular(24),
-        border: Border.all(color: cardBorder),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        // Graph Header
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text(
-                  "Weekly Progress Overview",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w800,
-                  ),
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  "$completedDaysCount of 7 Days Completed 🏆",
-                  style: TextStyle(
-                    color: green,
-                    fontSize: 12,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ],
-            ),
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-              decoration: BoxDecoration(
-                color: bluePrimary.withAlpha(30),
-                borderRadius: BorderRadius.circular(12),
-                border: Border.all(color: bluePrimary.withAlpha(60)),
+    return GestureDetector(
+      onTap: () {
+        if (index == 0) {
+          if (Navigator.canPop(context)) {
+            Navigator.pop(context);
+          } else {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const HomePage(userName: 'Alex'),
               ),
-              child: Text(
-                "Avg: ${avgGlasses.toStringAsFixed(1)} glasses/day",
-                style: TextStyle(
-                  color: bluePrimary,
-                  fontSize: 11,
-                  fontWeight: FontWeight.bold,
-                ),
+            );
+          }
+        }
+      },
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 250),
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(
+              icon,
+              color: selected ? purple : Colors.white38,
+              size: 24,
+            ),
+            const SizedBox(height: 3),
+            Text(
+              label,
+              style: TextStyle(
+                color: selected ? Colors.white : Colors.white38,
+                fontSize: 9,
+                fontWeight: selected ? FontWeight.bold : FontWeight.normal,
               ),
             ),
           ],
         ),
-        const SizedBox(height: 25),
+      ),
+    );
+  }
 
-        // 7-day Bar Graph
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: List.generate(7, (index) {
-            final day = weekDays[index];
-            final key = _formatDateKey(day);
-            final count = dailyWaterHistory[key] ?? 0;
-            final double percent = (count / totalGlasses).clamp(0.0, 1.0);
-            final isToday = _isSameDay(day, now);
-            final percentageStr = "${(percent * 100).round()}%";
-
-            return Expanded(
-              child: Column(
-                children: [
-                  // Badge above bar
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
-                    decoration: BoxDecoration(
-                      color: count >= totalGlasses ? green.withAlpha(30) : Colors.transparent,
-                      borderRadius: BorderRadius.circular(6),
-                    ),
-                    child: Text(
-                      percentageStr,
-                      style: TextStyle(
-                        color: count >= totalGlasses ? green : Colors.white54,
-                        fontSize: 9,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-
-                  // The graph bar
-                  Container(
-                    width: 22,
-                    height: 100,
-                    decoration: BoxDecoration(
-                      color: const Color(0xFF162436),
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Stack(
-                      alignment: Alignment.bottomCenter,
-                      children: [
-                        // Filled part
-                        Container(
-                          width: 22,
-                          height: 100 * percent,
-                          decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              begin: Alignment.topCenter,
-                              end: Alignment.bottomCenter,
-                              colors: count >= totalGlasses
-                                  ? [green, const Color(0xFF159960)] 
-                                  : [blueSecondary, blueDark],
-                            ),
-                            borderRadius: BorderRadius.circular(12),
-                            boxShadow: count >= totalGlasses ? [
-                              BoxShadow(
-                                color: green.withAlpha(80),
-                                blurRadius: 6,
-                              )
-                            ] : null,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-
-                  // Weekday Label
-                  Text(
-                    weekLabels[day.weekday - 1],
-                    style: TextStyle(
-                      color: isToday ? blueSecondary : Colors.white,
-                      fontSize: 12,
-                      fontWeight: isToday ? FontWeight.w800 : FontWeight.w600,
-                    ),
-                  ),
-                  const SizedBox(height: 2),
-                  // Fraction count e.g. 8/8
-                  Text(
-                    "$count/$totalGlasses",
-                    style: TextStyle(
-                      color: Colors.white38,
-                      fontSize: 9,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ],
-              ),
-            );
-          }),
+  Widget _addButton() {
+    return Transform.translate(
+      offset: const Offset(0, -10),
+      child: Container(
+        width: 52,
+        height: 52,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          gradient: LinearGradient(
+            colors: [
+              purple,
+              const Color(0xFF8D4CFF),
+            ],
+          ),
+          boxShadow: [
+            BoxShadow(
+              color: purple.withValues(alpha: 0.38),
+              blurRadius: 22,
+              spreadRadius: 2,
+            ),
+          ],
         ),
-
-        const SizedBox(height: 35),
-        const Divider(color: Colors.white12),
-        const SizedBox(height: 25),
-
-        // Day-by-Day Breakdown title
-        const Text(
-          "Day-by-Day Progress Breakdown",
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 16,
-            fontWeight: FontWeight.w800,
+        child: Material(
+          color: Colors.transparent,
+          shape: const CircleBorder(),
+          child: InkWell(
+            customBorder: const CircleBorder(),
+            onTap: _incrementWater,
+            child: const Icon(
+              Icons.add_rounded,
+              color: Colors.white,
+              size: 31,
+            ),
           ),
         ),
-        const SizedBox(height: 16),
-
-        // List of Day-by-Day progress bars
-        ListView.separated(
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          itemCount: 7,
-          separatorBuilder: (context, index) => const SizedBox(height: 12),
-          itemBuilder: (context, index) {
-            final day = weekDays[index];
-            final key = _formatDateKey(day);
-            final count = dailyWaterHistory[key] ?? 0;
-            final isCompleted = count >= totalGlasses;
-            final double percent = (count / totalGlasses).clamp(0.0, 1.0);
-            
-            // Format Day String
-            final dayNames = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
-            final dayName = dayNames[day.weekday - 1];
-            final monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-            final dateString = "${day.day} ${monthNames[day.month - 1]}";
-
-            return Container(
-              padding: const EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                color: cardColor,
-                borderRadius: BorderRadius.circular(16),
-                border: Border.all(
-                  color: isCompleted ? green.withAlpha(50) : cardBorder,
-                  width: isCompleted ? 1.5 : 1.0,
-                ),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          Icon(
-                            isCompleted ? Icons.check_circle_rounded : Icons.water_drop_rounded,
-                            color: isCompleted ? green : blueSecondary,
-                            size: 18,
-                          ),
-                          const SizedBox(width: 8),
-                          Text(
-                            dayName,
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          const SizedBox(width: 6),
-                          Text(
-                            "($dateString)",
-                            style: const TextStyle(
-                              color: Colors.white38,
-                              fontSize: 12,
-                            ),
-                          ),
-                        ],
-                      ),
-                      Text(
-                        "$count / $totalGlasses glasses (${(percent * 100).round()}%)",
-                        style: TextStyle(
-                          color: isCompleted ? green : Colors.white70,
-                          fontSize: 13,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 12),
-                  // Progress Bar
-                  Container(
-                    height: 8,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      color: const Color(0xFF162436),
-                      borderRadius: BorderRadius.circular(4),
-                    ),
-                    child: Stack(
-                      children: [
-                        FractionallySizedBox(
-                          widthFactor: percent,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                colors: isCompleted
-                                    ? [green, const Color(0xFF159960)]
-                                    : [blueSecondary, blueDark],
-                              ),
-                              borderRadius: BorderRadius.circular(4),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            );
-          },
-        ),
-      ],
-    ),
-  );
-}
+      ),
+    );
+  }
 }
 
 // ============================================================
-// CUSTOM WAVE SIMULATION PAINTER
+// WATER DROP PAINTER (Wave liquid fill & Droplet outline)
 // ============================================================
-class _WavePainter extends CustomPainter {
-  final double animationValue;
-  final Color waveColor;
-  final Color waveDarkColor;
+class WaterDropPainter extends CustomPainter {
+  final double fillPercentage;
+  final double waveValue;
+  final Color primaryColor;
+  final Color secondaryColor;
 
-  _WavePainter({
-    required this.animationValue,
-    required this.waveColor,
-    required this.waveDarkColor,
+  WaterDropPainter({
+    required this.fillPercentage,
+    required this.waveValue,
+    required this.primaryColor,
+    required this.secondaryColor,
   });
 
   @override
   void paint(Canvas canvas, Size size) {
-    final wavePaint = Paint()
-      ..color = waveColor
+    final width = size.width;
+    final height = size.height;
+
+    // 1. Build Water Drop Path
+    Path dropPath = Path();
+    dropPath.moveTo(width * 0.5, 5); // Tip top of drop
+    dropPath.cubicTo(
+      width * 0.85, height * 0.42,
+      width, height * 0.68,
+      width * 0.5, height - 5,
+    ); // Right curve to bottom
+    dropPath.cubicTo(
+      0, height * 0.68,
+      width * 0.15, height * 0.42,
+      width * 0.5, 5,
+    ); // Left curve to top
+    dropPath.close();
+
+    // Draw background drop container (glass dark outline fill)
+    final bgPaint = Paint()
+      ..color = const Color(0xFF0C1726)
       ..style = PaintingStyle.fill;
+    canvas.drawPath(dropPath, bgPaint);
 
-    final darkWavePaint = Paint()
-      ..color = waveDarkColor.withAlpha(160)
-      ..style = PaintingStyle.fill;
+    // 2. Draw Liquid level inside clipped drop
+    canvas.save();
+    canvas.clipPath(dropPath);
 
-    final path = Path();
-    final backPath = Path();
+    if (fillPercentage > 0.0) {
+      double liquidTopY = height - (height * fillPercentage);
 
-    // Amplitude & Frequency of Wave
-    double amplitude = 8.0;
-    double frequency = 2 * math.pi / size.width;
+      Path wavePath = Path();
+      wavePath.moveTo(0, liquidTopY);
 
-    path.moveTo(0, size.height);
-    backPath.moveTo(0, size.height);
+      double waveFrequency = 2 * math.pi;
+      double waveAmplitude = 6.0;
 
-    for (double x = 0; x <= size.width; x++) {
-      // Front Wave
-      double yFront = amplitude * math.sin((x * frequency) + (animationValue * 2 * math.pi));
-      path.lineTo(x, yFront);
+      for (double x = 0; x <= width; x += 2) {
+        double y = liquidTopY +
+            math.sin((x / width * waveFrequency) + (waveValue * 2 * math.pi)) *
+                waveAmplitude;
+        wavePath.lineTo(x, y);
+      }
 
-      // Back Wave (Phase shifted)
-      double yBack = amplitude * math.cos((x * frequency) - (animationValue * 2 * math.pi) + (math.pi / 4));
-      backPath.lineTo(x, yBack);
+      wavePath.lineTo(width, height);
+      wavePath.lineTo(0, height);
+      wavePath.close();
+
+      // Liquid Gradient
+      final liquidGradient = LinearGradient(
+        begin: Alignment.topCenter,
+        end: Alignment.bottomCenter,
+        colors: [
+          primaryColor,
+          secondaryColor,
+        ],
+      );
+
+      final liquidPaint = Paint()
+        ..shader = liquidGradient.createShader(Rect.fromLTWH(0, 0, width, height))
+        ..style = PaintingStyle.fill;
+
+      canvas.drawPath(wavePath, liquidPaint);
+
+      // Liquid Top Highlight Ripple
+      final ripplePaint = Paint()
+        ..color = Colors.white.withValues(alpha: 0.35)
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 2.0;
+      canvas.drawPath(wavePath, ripplePaint);
+
+      // Draw subtle floating bubbles inside liquid
+      final bubblePaint = Paint()..color = Colors.white.withValues(alpha: 0.25);
+      final random = math.Random(42);
+      for (int i = 0; i < 5; i++) {
+        double bx = (random.nextDouble() * 0.6 + 0.2) * width;
+        double by = height - (random.nextDouble() * (height * fillPercentage * 0.8));
+        double br = (random.nextDouble() * 3 + 2);
+        canvas.drawCircle(Offset(bx, by), br, bubblePaint);
+      }
     }
 
-    path.lineTo(size.width, size.height);
-    path.lineTo(0, size.height);
+    canvas.restore();
 
-    backPath.lineTo(size.width, size.height);
-    backPath.lineTo(0, size.height);
+    // 3. Drop Rim & Glow Border
+    final borderPaint = Paint()
+      ..color = const Color(0xFF4B9CFF).withValues(alpha: 0.5)
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 2.5;
+    canvas.drawPath(dropPath, borderPaint);
 
-    // Draw background/dark wave first
-    canvas.drawPath(backPath, darkWavePaint);
-    // Draw foreground wave second
-    canvas.drawPath(path, wavePaint);
+    // Highlights on drop edge for 3D glossy look
+    Path highlightPath = Path();
+    highlightPath.moveTo(width * 0.5, 12);
+    highlightPath.cubicTo(
+      width * 0.78, height * 0.4,
+      width * 0.85, height * 0.55,
+      width * 0.75, height * 0.75,
+    );
+
+    final highlightPaint = Paint()
+      ..color = Colors.white.withValues(alpha: 0.25)
+      ..style = PaintingStyle.stroke
+      ..strokeCap = StrokeCap.round
+      ..strokeWidth = 2.0;
+    canvas.drawPath(highlightPath, highlightPaint);
   }
 
   @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) => true;
+  bool shouldRepaint(covariant WaterDropPainter oldDelegate) {
+    return oldDelegate.fillPercentage != fillPercentage ||
+        oldDelegate.waveValue != waveValue;
+  }
 }
 
-// Circle clipping helper
-class _CircleClipper extends CustomClipper<Path> {
+// ============================================================
+// GLASS ICON PAINTER (Used in 8-glass row indicator)
+// ============================================================
+class GlassIconPainter extends CustomPainter {
+  final bool isFilled;
+  final Color fillColor;
+
+  GlassIconPainter({
+    required this.isFilled,
+    required this.fillColor,
+  });
+
   @override
-  Path getClip(Size size) {
-    final path = Path();
-    path.addOval(Rect.fromLTWH(0, 0, size.width, size.height));
-    return path;
+  void paint(Canvas canvas, Size size) {
+    final width = size.width;
+    final height = size.height;
+
+    Path glassPath = Path();
+    glassPath.moveTo(2, 2);
+    glassPath.lineTo(width - 2, 2);
+    glassPath.lineTo(width - 4, height - 2);
+    glassPath.lineTo(4, height - 2);
+    glassPath.close();
+
+    if (isFilled) {
+      // Liquid inside glass
+      Path liquidPath = Path();
+      liquidPath.moveTo(3, height * 0.25);
+      liquidPath.lineTo(width - 3, height * 0.25);
+      liquidPath.lineTo(width - 4, height - 2);
+      liquidPath.lineTo(4, height - 2);
+      liquidPath.close();
+
+      final liquidPaint = Paint()
+        ..color = fillColor
+        ..style = PaintingStyle.fill;
+      canvas.drawPath(liquidPath, liquidPaint);
+    }
+
+    final strokePaint = Paint()
+      ..color = isFilled ? Colors.white : Colors.white38
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 1.5;
+    canvas.drawPath(glassPath, strokePaint);
   }
 
   @override
-  bool shouldReclip(CustomClipper<Path> oldClipper) => false;
+  bool shouldRepaint(covariant GlassIconPainter oldDelegate) {
+    return oldDelegate.isFilled != isFilled;
+  }
 }
