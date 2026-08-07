@@ -1,5 +1,7 @@
 import 'dart:async';
+import 'dart:io';
 import 'dart:math' as math;
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'home_page.dart';
 
@@ -12,6 +14,20 @@ class WaterTrackerPage extends StatefulWidget {
 
 class _WaterTrackerPageState extends State<WaterTrackerPage>
     with TickerProviderStateMixin {
+  // Audio Player for water reminder notification sound
+  final AudioPlayer _audioPlayer = AudioPlayer();
+
+  void _playReminderAudio() {
+    Future.microtask(() async {
+      try {
+        await _audioPlayer.stop();
+        await _audioPlayer.play(AssetSource('water_reminder.aac'));
+      } catch (e) {
+        debugPrint('Error playing reminder sound: $e');
+      }
+    });
+  }
+
   // ============================================================
   // DESIGN SYSTEM & COLORS (Strictly matched to home_page.dart)
   // ============================================================
@@ -100,6 +116,7 @@ class _WaterTrackerPageState extends State<WaterTrackerPage>
     _waveAnimationController.dispose();
     _pulseAnimationController.dispose();
     _countAnimationController.dispose();
+    _audioPlayer.dispose();
     super.dispose();
   }
 
@@ -132,6 +149,7 @@ class _WaterTrackerPageState extends State<WaterTrackerPage>
 
   // Live Notification Banner Popup
   void _showHydrationNotificationBanner() {
+    _playReminderAudio();
     showGeneralDialog(
       context: context,
       barrierDismissible: true,
@@ -287,6 +305,165 @@ class _WaterTrackerPageState extends State<WaterTrackerPage>
   }
 
   // ============================================================
+  // CUSTOM TIMER SETTING DIALOG
+  // ============================================================
+  void _openCustomTimerDialog() {
+    final TextEditingController customController = TextEditingController(
+      text: reminderIntervalMinutes.toString(),
+    );
+    showDialog(
+      context: context,
+      builder: (context) {
+        return StatefulBuilder(
+          builder: (context, setDialogState) {
+            return AlertDialog(
+              backgroundColor: const Color(0xFF101B29),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(24),
+                side: BorderSide(color: purple.withValues(alpha: 0.5), width: 1.5),
+              ),
+              title: Row(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                      color: purple.withValues(alpha: 0.2),
+                      shape: BoxShape.circle,
+                    ),
+                    child: Icon(Icons.timer_outlined, color: purple, size: 22),
+                  ),
+                  const SizedBox(width: 12),
+                  const Text(
+                    "Custom Water Timer",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w800,
+                    ),
+                  ),
+                ],
+              ),
+              content: SingleChildScrollView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      "Set your custom reminder interval in minutes:",
+                      style: TextStyle(color: Colors.white70, fontSize: 13),
+                    ),
+                    const SizedBox(height: 16),
+                    TextField(
+                      controller: customController,
+                      keyboardType: TextInputType.number,
+                      autofocus: true,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      decoration: InputDecoration(
+                        labelText: "Interval (Minutes)",
+                        labelStyle: TextStyle(color: bluePrimary, fontWeight: FontWeight.bold),
+                        hintText: "e.g. 5, 25, 40...",
+                        hintStyle: const TextStyle(color: Colors.white30),
+                        suffixText: "min",
+                        suffixStyle: TextStyle(color: blueSecondary, fontWeight: FontWeight.bold),
+                        filled: true,
+                        fillColor: const Color(0xFF060E18),
+                        prefixIcon: Icon(Icons.alarm_on_rounded, color: purple),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(16),
+                          borderSide: BorderSide(color: bluePrimary.withValues(alpha: 0.3)),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(16),
+                          borderSide: BorderSide(color: bluePrimary.withValues(alpha: 0.3)),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(16),
+                          borderSide: BorderSide(color: purple, width: 2),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+                    const Text(
+                      "Quick Shortcuts:",
+                      style: TextStyle(color: Colors.white54, fontSize: 12, fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(height: 8),
+                    Wrap(
+                      spacing: 8,
+                      runSpacing: 8,
+                      children: [1, 2, 5, 10, 15, 20, 30, 45, 60, 90, 120].map((m) {
+                        final isSel = customController.text == m.toString();
+                        return ChoiceChip(
+                          label: Text(
+                            "$m min",
+                            style: TextStyle(
+                              color: isSel ? Colors.white : Colors.white70,
+                              fontSize: 12,
+                              fontWeight: isSel ? FontWeight.bold : FontWeight.w500,
+                            ),
+                          ),
+                          selected: isSel,
+                          selectedColor: purple,
+                          backgroundColor: const Color(0xFF162436),
+                          onSelected: (_) {
+                            setDialogState(() {
+                              customController.text = m.toString();
+                            });
+                          },
+                        );
+                      }).toList(),
+                    ),
+                  ],
+                ),
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: const Text("Cancel", style: TextStyle(color: Colors.white54)),
+                ),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: purple,
+                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+                  ),
+                  onPressed: () {
+                    final int? enteredMinutes = int.tryParse(customController.text.trim());
+                    if (enteredMinutes != null && enteredMinutes > 0) {
+                      setState(() {
+                        isReminderEnabled = true;
+                        reminderIntervalMinutes = enteredMinutes;
+                        reminderSecondsRemaining = enteredMinutes * 60;
+                      });
+                      _startReminderCountdown();
+                      Navigator.pop(context);
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text("Water Reminder set for $enteredMinutes minutes! 🥤"),
+                          backgroundColor: green,
+                          duration: const Duration(seconds: 3),
+                        ),
+                      );
+                    }
+                  },
+                  child: const Text(
+                    "Set Timer",
+                    style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ],
+            );
+          },
+        );
+      },
+    );
+  }
+
+  // ============================================================
   // REMINDER SETTINGS DIALOG (Interval, Times & Switch)
   // ============================================================
   void _openReminderSettingsDialog() {
@@ -384,34 +561,107 @@ class _WaterTrackerPageState extends State<WaterTrackerPage>
                   Wrap(
                     spacing: 8,
                     runSpacing: 10,
-                    children: intervals.map((min) {
-                      final isSel = (tempInterval == min);
-                      return ChoiceChip(
+                    children: [
+                      ...intervals.map((min) {
+                        final isSel = (tempInterval == min);
+                        return ChoiceChip(
+                          label: Text(
+                            min >= 60 ? "${min ~/ 60} hour${min > 60 ? 's' : ''}" : "$min min",
+                            style: TextStyle(
+                              color: isSel ? Colors.white : Colors.white70,
+                              fontWeight: isSel ? FontWeight.bold : FontWeight.w500,
+                              fontSize: 13,
+                            ),
+                          ),
+                          selected: isSel,
+                          selectedColor: purple,
+                          backgroundColor: const Color(0xFF162436),
+                          side: BorderSide(
+                            color: isSel ? Colors.white : Colors.white12,
+                          ),
+                          onSelected: tempEnabled
+                              ? (sel) {
+                                  if (sel) {
+                                    setModalState(() {
+                                      tempInterval = min;
+                                    });
+                                  }
+                                }
+                              : null,
+                        );
+                      }),
+                      // Custom Timer Chip
+                      ChoiceChip(
                         label: Text(
-                          min >= 60 ? "${min ~/ 60} hour${min > 60 ? 's' : ''}" : "$min min",
+                          !intervals.contains(tempInterval) ? "Custom ($tempInterval min) ⏱️" : "+ Custom ⏱️",
                           style: TextStyle(
-                            color: isSel ? Colors.white : Colors.white70,
-                            fontWeight: isSel ? FontWeight.bold : FontWeight.w500,
+                            color: !intervals.contains(tempInterval) ? Colors.white : purple,
+                            fontWeight: FontWeight.bold,
                             fontSize: 13,
                           ),
                         ),
-                        selected: isSel,
+                        selected: !intervals.contains(tempInterval),
                         selectedColor: purple,
                         backgroundColor: const Color(0xFF162436),
                         side: BorderSide(
-                          color: isSel ? Colors.white : Colors.white12,
+                          color: !intervals.contains(tempInterval) ? Colors.white : purple.withValues(alpha: 0.5),
                         ),
                         onSelected: tempEnabled
-                            ? (sel) {
-                                if (sel) {
+                            ? (_) async {
+                                final TextEditingController customCtrl = TextEditingController(
+                                  text: tempInterval.toString(),
+                                );
+                                final result = await showDialog<int>(
+                                  context: context,
+                                  builder: (ctx) => AlertDialog(
+                                    backgroundColor: const Color(0xFF101B29),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(20),
+                                      side: BorderSide(color: purple),
+                                    ),
+                                    title: const Text("Custom Reminder Timer", style: TextStyle(color: Colors.white)),
+                                    content: TextField(
+                                      controller: customCtrl,
+                                      keyboardType: TextInputType.number,
+                                      autofocus: true,
+                                      style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                                      decoration: InputDecoration(
+                                        labelText: "Minutes",
+                                        labelStyle: TextStyle(color: bluePrimary),
+                                        suffixText: "min",
+                                        suffixStyle: const TextStyle(color: Colors.white54),
+                                        filled: true,
+                                        fillColor: const Color(0xFF07111D),
+                                        border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                                      ),
+                                    ),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () => Navigator.pop(ctx),
+                                        child: const Text("Cancel", style: TextStyle(color: Colors.white54)),
+                                      ),
+                                      ElevatedButton(
+                                        style: ElevatedButton.styleFrom(backgroundColor: purple),
+                                        onPressed: () {
+                                          final val = int.tryParse(customCtrl.text.trim());
+                                          if (val != null && val > 0) {
+                                            Navigator.pop(ctx, val);
+                                          }
+                                        },
+                                        child: const Text("Set", style: TextStyle(color: Colors.white)),
+                                      ),
+                                    ],
+                                  ),
+                                );
+                                if (result != null) {
                                   setModalState(() {
-                                    tempInterval = min;
+                                    tempInterval = result;
                                   });
                                 }
                               }
                             : null,
-                      );
-                    }).toList(),
+                      ),
+                    ],
                   ),
 
                   const SizedBox(height: 22),
@@ -1586,17 +1836,42 @@ class _WaterTrackerPageState extends State<WaterTrackerPage>
             const Divider(color: Colors.white10),
             const SizedBox(height: 6),
 
-            // Action Row (Set Reminder & Test Notification)
+            // Action Row (Configure, Custom Timer & Test Notification)
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 GestureDetector(
+                  onTap: _openCustomTimerDialog,
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                    decoration: BoxDecoration(
+                      color: purple.withValues(alpha: 0.18),
+                      borderRadius: BorderRadius.circular(8),
+                      border: Border.all(color: purple.withValues(alpha: 0.4)),
+                    ),
+                    child: Row(
+                      children: [
+                        Icon(Icons.timer_outlined, color: purple, size: 14),
+                        const SizedBox(width: 4),
+                        Text(
+                          "Custom Timer ⏱️",
+                          style: TextStyle(
+                            color: purple,
+                            fontSize: 11,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                GestureDetector(
                   onTap: _openReminderSettingsDialog,
                   child: Text(
-                    "Configure Reminder ⏰",
+                    "Settings ⚙️",
                     style: TextStyle(
-                      color: purple,
-                      fontSize: 12,
+                      color: Colors.white70,
+                      fontSize: 11,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -1604,7 +1879,7 @@ class _WaterTrackerPageState extends State<WaterTrackerPage>
                 GestureDetector(
                   onTap: _showHydrationNotificationBanner,
                   child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                     decoration: BoxDecoration(
                       color: Colors.white.withValues(alpha: 0.08),
                       borderRadius: BorderRadius.circular(8),
@@ -1614,7 +1889,7 @@ class _WaterTrackerPageState extends State<WaterTrackerPage>
                         Icon(Icons.notifications_active_rounded, color: Color(0xFF00C6FF), size: 14),
                         SizedBox(width: 5),
                         Text(
-                          "Test Notification 🔔",
+                          "Test 🔔",
                           style: TextStyle(
                             color: Color(0xFF00C6FF),
                             fontSize: 11,
