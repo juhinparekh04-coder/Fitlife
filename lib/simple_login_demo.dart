@@ -96,7 +96,7 @@ class _SimpleLoginPageState extends State<SimpleLoginPage>
       final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: _emailController.text.trim(),
         password: _passwordController.text,
-      ).timeout(const Duration(seconds: 15));
+      );
       final userName = credential.user!.displayName ??
           credential.user!.email?.split('@').first ??
           'User';
@@ -130,13 +130,6 @@ class _SimpleLoginPageState extends State<SimpleLoginPage>
               ),
             );
           },
-        ),
-      );
-    } on TimeoutException {
-      if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Login took too long. Check your internet and try again.'),
         ),
       );
     } on FirebaseAuthException catch (error) {

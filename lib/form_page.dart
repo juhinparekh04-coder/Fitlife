@@ -93,11 +93,9 @@ class _SignupPageState extends State<SignupPage>
       final credential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: emailAddress,
         password: password.text,
-      ).timeout(const Duration(seconds: 15));
-      createdUser = credential.user;
-      await createdUser!.updateDisplayName(fullName).timeout(
-        const Duration(seconds: 10),
       );
+      createdUser = credential.user;
+      await createdUser!.updateDisplayName(fullName);
       await FirebaseFirestore.instance
           .collection('users')
           .doc(createdUser.uid)
@@ -112,17 +110,12 @@ class _SignupPageState extends State<SignupPage>
         'fitnessGoal': goal,
         'activityLevel': activity,
         'createdAt': FieldValue.serverTimestamp(),
-      }).timeout(const Duration(seconds: 15));
+      });
       profileSaved = true;
       await FirebaseAuth.instance.signOut();
 
       if (!mounted) return;
       Navigator.pop(context, emailAddress);
-    } on TimeoutException {
-      if (!profileSaved) {
-        await _removeIncompleteAccount(createdUser);
-      }
-      showMessage('Request timed out. Check your internet and Firestore setup, then try again.');
     } on FirebaseAuthException catch (error) {
       if (!profileSaved) {
         await _removeIncompleteAccount(createdUser);
