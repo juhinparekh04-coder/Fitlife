@@ -1,7 +1,8 @@
 import 'dart:async';
 import 'dart:io';
+import 'dart:js' as js;
 import 'dart:math' as math;
-import 'package:audioplayers/audioplayers.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'home_page.dart';
 
@@ -14,18 +15,14 @@ class WaterTrackerPage extends StatefulWidget {
 
 class _WaterTrackerPageState extends State<WaterTrackerPage>
     with TickerProviderStateMixin {
-  // Audio Player for water reminder notification sound
-  final AudioPlayer _audioPlayer = AudioPlayer();
-
   void _playReminderAudio() {
-    Future.microtask(() async {
+    if (kIsWeb) {
       try {
-        await _audioPlayer.stop();
-        await _audioPlayer.play(AssetSource('water_reminder.aac'));
+        js.context.callMethod('playAudio', ['assets/assets/water_reminder.aac']);
       } catch (e) {
-        debugPrint('Error playing reminder sound: $e');
+        debugPrint('Error playing sound via JS: $e');
       }
-    });
+    }
   }
 
   // ============================================================
@@ -116,7 +113,6 @@ class _WaterTrackerPageState extends State<WaterTrackerPage>
     _waveAnimationController.dispose();
     _pulseAnimationController.dispose();
     _countAnimationController.dispose();
-    _audioPlayer.dispose();
     super.dispose();
   }
 
