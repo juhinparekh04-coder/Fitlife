@@ -1566,14 +1566,21 @@ class _WaterTrackerPageState extends State<WaterTrackerPage>
                 alignment: Alignment.center,
                 fit: StackFit.expand,
                 children: [
-                  // WATER DROPLET PAINT & CLIPPER
-                  CustomPaint(
-                    painter: WaterDropPainter(
-                      fillPercentage: fillPercentage,
-                      waveValue: _waveAnimationController.value,
-                      primaryColor: blueSecondary,
-                      secondaryColor: blueDark,
-                    ),
+                  // WATER DROPLET PAINT & CLIPPER (Smoothed with TweenAnimationBuilder)
+                  TweenAnimationBuilder<double>(
+                    tween: Tween<double>(begin: 0.0, end: fillPercentage),
+                    duration: const Duration(milliseconds: 600),
+                    curve: Curves.easeOutCubic,
+                    builder: (context, animatedFill, child) {
+                      return CustomPaint(
+                        painter: WaterDropPainter(
+                          fillPercentage: animatedFill,
+                          waveValue: _waveAnimationController.value,
+                          primaryColor: blueSecondary,
+                          secondaryColor: blueDark,
+                        ),
+                      );
+                    },
                   ),
 
                   // TEXT INSIDE DROPLET (High Contrast drop shadow)
