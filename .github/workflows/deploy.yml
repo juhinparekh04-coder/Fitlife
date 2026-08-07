@@ -26,12 +26,12 @@ jobs:
         run: flutter pub get
 
       - name: Create dummy .env file
-        run: echo "GEMINI_API_KEY=mock_key" > .env
+        run: touch .env
 
       - name: Build Web
         run: flutter build web --release --base-href "/Fitlife/"
 
-      - name: Disable Jekyll
+      - name: Create .nojekyll
         run: touch build/web/.nojekyll
 
       - name: Deploy to GitHub Pages
